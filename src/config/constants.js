@@ -4,3 +4,4 @@ export const TOAST_STYLE = {
     background: '#082f49',
     color: '#fff',
 }
+export const ITEMS_PER_PAGE = 10

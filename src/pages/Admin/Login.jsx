@@ -19,7 +19,7 @@ function Login(){
 
     return (
         <section className="flex justify-center items-center min-h-screen p-2">
-            <Card className="max-w-md w-full p-6 bg-sky-950">
+            <Card className="max-w-md w-full p-6 ">
                 <CardHeader className="flex justify-center">
                 <h2 className="text-2xl">VCard Admin</h2>
                 </CardHeader>
