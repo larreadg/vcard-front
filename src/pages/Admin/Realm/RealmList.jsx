@@ -3,14 +3,14 @@
 import { useState, useEffect, useCallback } from "react"
 import { useNavigate  } from 'react-router-dom'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner, Input, Tooltip, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react"
-import { Pagination } from "@nextui-org/pagination";
-import { jwtDecode } from "jwt-decode"
+import { Pagination } from "@nextui-org/pagination"
 import { API_URL, ITEMS_PER_PAGE } from "../../../config/constants"
-import { EyeIcon } from "../../../icons/EyeIcon";
-import { EditIcon } from "../../../icons/EditIcon";
-import { SearchIcon } from "../../../icons/SearchIcon";
+import { EyeIcon } from "../../../icons/EyeIcon"
+import { EditIcon } from "../../../icons/EditIcon"
+import { SearchIcon } from "../../../icons/SearchIcon"
+import { getUser } from "../../../utils/getUser"
 import axiosInstance from "../../../services/axiosInstance"
-import RealmColor from "../../../components/RealmColor";
+import RealmColor from "../../../components/RealmColor"
 import CustomBreadcrumbs from "../../../components/CustomBreadcrumbs"
 import useAxiosInterceptor from "../../../hooks/useAxiosInterceptor"
 
@@ -32,9 +32,9 @@ const RealmList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem('token')
-      const decoded = jwtDecode(token)
-      const userId = decoded.id
+      const user = getUser()
+      if(!user) navigate('/admin/login')
+      const userId = user.id
       const API_URL_REALM = `${API_URL}/usuario-realm/${userId}/realms`
       setIsLoading(true)
       try {
@@ -51,7 +51,7 @@ const RealmList = () => {
     }
 
     fetchData()
-  }, [page, filter, itemsPerPage])
+  }, [page, filter, itemsPerPage, navigate])
 
 
   const goToEdit = useCallback((url) => {
@@ -103,6 +103,9 @@ const RealmList = () => {
     <>
       <section className="grid grid-cols-1">
         <CustomBreadcrumbs items={breadcrumbs} />
+      </section>
+      <section className="flex mb-4">
+        <Button color="success" size="sm" onClick={() => navigate('/admin/dominio/create')}>Agregar dominio</Button>
       </section>
       <section className="grid grid-cols-1">
         <Input 

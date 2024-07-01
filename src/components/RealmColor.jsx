@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-const RealmColor = ({ color }) => {
+const RealmColor = ({ color = '#fff' }) => {
   return (
     <section className='h-3 w-3 rounded' style={ { backgroundColor: color } }></section>
   )

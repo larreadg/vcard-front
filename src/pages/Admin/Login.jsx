@@ -10,6 +10,7 @@ import { API_URL, TOAST_STYLE } from '../../config/constants'
 import axios from 'axios'
 import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate  } from 'react-router-dom'
+import { VCardIcon } from '../../icons/VCardIcon'
 
 function Login(){
 
@@ -20,14 +21,14 @@ function Login(){
     return (
         <section className="flex justify-center items-center min-h-screen p-2">
             <Card className="max-w-md w-full p-6 ">
-                <CardHeader className="flex justify-center">
-                <h2 className="text-2xl">VCard Admin</h2>
+                <CardHeader className="flex justify-center items-center gap-2">
+                    <VCardIcon/>
+                    <h2 className="text-2xl font-bold">VCard Admin</h2>
                 </CardHeader>
                 <CardBody>
                     <Formik
                     initialValues={{ email: '', password: '' }}
                     validate={values => {
-                        console.log(values)
                         const errors = {};
                         if (!values.email) {
                             errors.email = 'Required';
